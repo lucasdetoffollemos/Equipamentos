@@ -17,10 +17,22 @@ namespace EquipamentosApp
             string[] nSerie = new string[99];
             string[] data = new string[99];
             string[] fabricante = new string[99];
-            int[] id = new int[99];
+            int[] idEquipamentos = new int[99];
+            ///
+            string[] tituloChamado = new string[99];
+            string[] descricaoChamado = new string[99];
+            string[] nomeEquiChamado = new string[99];
+            string[] dataChamado = new string[99];
+            int[] idChamados = new int[99];
 
-            int cont = 0;
+            int contEquipamentos = 0;
             int idEquipamento = 1;
+            
+
+
+            //
+            int idChamado = 1;
+            int contChamados = 0;
 
             while (true)
             {
@@ -44,6 +56,7 @@ namespace EquipamentosApp
                 {
 
                     case "1":
+
                         //Menu equipamentos
                         Console.WriteLine("MENU EQUIPAMENTOS: ");
                         Console.WriteLine("------escolha uma opção------");
@@ -62,37 +75,53 @@ namespace EquipamentosApp
                         switch (opcaoMenuEquipamentos)
                         {
                             case "1":
-                                Console.WriteLine("REGISTRAR EQUIPAMENTOS: ");
+
+                                bool nomeInvalido = false;
+                                string nomeDigitado;
+
                                 Console.WriteLine("Insira o nome do equipamento: ");
-                                nome[cont] = Console.ReadLine();
+                                nomeDigitado = Console.ReadLine();
+
+                                while (nomeDigitado.Length < 6)
+                                {
+                                    Console.WriteLine("Nome inválido, digite novamente, no minimo 6 caracteres.");
+                                    Console.WriteLine("Insira o nome do equipamento: ");
+                                    nomeDigitado = Console.ReadLine();
+                                } 
+
+
+
+                                nome[contEquipamentos] = nomeDigitado;
+
                                 Console.WriteLine("Insira o preço de aquisição: ");
-                                precoAquisicao[cont] = Console.ReadLine();
+                                precoAquisicao[contEquipamentos] = Console.ReadLine();
                                 Console.WriteLine("Insira o número de série: ");
-                                nSerie[cont] = Console.ReadLine();
+                                nSerie[contEquipamentos] = Console.ReadLine();
                                 //data
                                 Console.WriteLine("Insira a data: ");
-                                data[cont] = Console.ReadLine();
+                                data[contEquipamentos] = Console.ReadLine();
                                 Console.WriteLine("Insira o fabricante: ");
-                                fabricante[cont] = Console.ReadLine();
-                                id[cont] = idEquipamento;
-                                cont++;
+                                fabricante[contEquipamentos] = Console.ReadLine();
+                                idEquipamentos[contEquipamentos] = idEquipamento;
+                                contEquipamentos++;
                                 idEquipamento++;
                                 break;
 
                             case "2":
-                              
-                                    for (int i = 0; i <= cont; i++)
+                                   
+                                    for (int i = 0; i <= contEquipamentos; i++)
                                     {
                                         if (nome[i] != null && precoAquisicao[i] != null && nSerie[i] != null && data[i] != null && fabricante[i] != null)
                                         {
-                                            Console.WriteLine($"Id do equipamento {id[i]}");
-                                            Console.WriteLine("Nome: " + nome[i]);
-                                            Console.WriteLine("Preço: " + precoAquisicao[i]);
-                                            Console.WriteLine("Número de série: " + nSerie[i]);
-                                            Console.WriteLine("Data de fabricação: " + data[i]);
-                                            Console.WriteLine("Fabricante: " + fabricante[i]);
-                                            Console.WriteLine(" ");
-                                        }
+                                        Console.WriteLine($"Id do equipamento {idEquipamentos[i]}");
+                                        Console.WriteLine("Nome: " + nome[i]);
+                                        Console.WriteLine("Preço: " + precoAquisicao[i]);
+                                        Console.WriteLine("Número de série: " + nSerie[i]);
+                                        Console.WriteLine("Data de fabricação: " + data[i]);
+                                        Console.WriteLine("Fabricante: " + fabricante[i]);
+                                        Console.WriteLine(" ");
+
+                                    }
                                     }
                                 
                                 Console.ReadLine();
@@ -100,11 +129,11 @@ namespace EquipamentosApp
                                 break;
                             //editar equipamneto
                             case "3":
-                                for (int i = 0; i <= cont; i++)
+                                for (int i = 0; i <= contEquipamentos; i++)
                                 {
                                     if (nome[i] != null && precoAquisicao[i] != null && nSerie[i] != null && data[i] != null && fabricante[i] != null)
                                     {
-                                        Console.WriteLine($"Id do equipamento {id[i]}");
+                                        Console.WriteLine($"Id do equipamento {idEquipamentos[i]}");
                                         Console.WriteLine("Nome: " + nome[i]);
                                         Console.WriteLine("Preço: " + precoAquisicao[i]);
                                         Console.WriteLine("Número de série: " + nSerie[i]);
@@ -120,8 +149,17 @@ namespace EquipamentosApp
                                 Console.Clear();
 
                                 Console.WriteLine("EDITAR EQUIPAMENTOS: ");
+
+                                string nomeEditado;
                                 Console.WriteLine("Insira o nome do equipamento: ");
-                                string nomeEditado = Console.ReadLine();
+                                nomeEditado = Console.ReadLine();
+                                while (nomeEditado.Length < 6)
+                                {
+                                    Console.WriteLine("Nome inválido, digite novamente, no minimo 6 caracteres.");
+                                    Console.WriteLine("Insira o nome do equipamento: ");
+                                    nomeEditado = Console.ReadLine();
+                                }
+
                                 Console.WriteLine("Insira o preço de aquisição: ");
                                 string precoAquisicaoEditado = Console.ReadLine();
                                 Console.WriteLine("Insira o número de série: ");
@@ -132,11 +170,11 @@ namespace EquipamentosApp
                                 Console.WriteLine("Insira o fabricante: ");
                                 string fabricanteEditado = Console.ReadLine();
 
-                                for (int i = 0; i < cont; i++)
+                                for (int i = 0; i < contEquipamentos; i++)
                                 {
                                     if (nome[i] != null && precoAquisicao[i] != null && nSerie[i] != null && data[i] != null && fabricante[i] != null)
                                     {
-                                        if (id[i] == idEditar)
+                                        if (idEquipamentos[i] == idEditar)
                                         {
                                             nome.SetValue(nomeEditado, i);
                                             precoAquisicao.SetValue(precoAquisicaoEditado, i);
@@ -153,11 +191,11 @@ namespace EquipamentosApp
 
                             //excluir
                             case "4":
-                                    for (int i = 0; i <= cont; i++)
+                                    for (int i = 0; i <= contEquipamentos; i++)
                                     {
                                         if (nome[i] != null && precoAquisicao[i] != null && nSerie[i] != null && data[i] != null && fabricante[i] != null)
                                         {
-                                            Console.WriteLine($"Id do equipamento {id[i]}");
+                                            Console.WriteLine($"Id do equipamento {idEquipamentos[i]}");
                                             Console.WriteLine("Nome: " + nome[i]);
                                             Console.WriteLine("Preço: " + precoAquisicao[i]);
                                             Console.WriteLine("Número de série: " + nSerie[i]);
@@ -172,19 +210,19 @@ namespace EquipamentosApp
                                 int idExcluir = Convert.ToInt32(Console.ReadLine());
                                 Console.Clear();
 
-                                for (int i = 0; i < cont; i++)
+                                for (int i = 0; i < contEquipamentos; i++)
                                 {
                                     if (nome[i] != null && precoAquisicao[i] != null && nSerie[i] != null && data[i] != null && fabricante[i] != null)
                                     {
-                                        if (id[i] == idExcluir)
+                                        if (idEquipamentos[i] == idExcluir)
                                         {
                                             nome = nome.Where(val => val != nome[i]).ToArray();
                                             precoAquisicao = precoAquisicao.Where(val => val != precoAquisicao[i]).ToArray();
                                             nSerie = nSerie.Where(val => val != nSerie[i]).ToArray();
                                             data = data.Where(val => val != data[i]).ToArray();
                                             fabricante = fabricante.Where(val => val != fabricante[i]).ToArray();
-                                            id = id.Where(val => val != id[i]).ToArray();
-                                            cont--;
+                                            idEquipamentos = idEquipamentos.Where(val => val != idEquipamentos[i]).ToArray();
+                                            contEquipamentos--;
                                         }
                                     }
                                 }
@@ -195,11 +233,195 @@ namespace EquipamentosApp
 
                             default: break;
                         }
+                    break;
+                    case "2":
+                        //Menu chamados
+                        Console.WriteLine("MENU CHAMADOS DE REGISTRO: ");
+                        Console.WriteLine("------escolha uma opção------");
 
-                     break;
+                        Console.WriteLine("1 - registrar chamado;");
+                        Console.WriteLine("2 - visualizar todos os chamados;");
+                        Console.WriteLine("3 - editar chamado;");
+                        Console.WriteLine("4 - excluir chamado;");
 
-                }
+
+                        Console.WriteLine("Digite a opção escolhida: ");
+                        string opcaoMenuChamados = Console.ReadLine();
+
+                        Console.Clear();
+
+                        switch (opcaoMenuChamados)
+                        {
+                            case "1":
+                                for (int i = 0; i <= contEquipamentos; i++)
+                                {
+                                    if (nome[i] != null && precoAquisicao[i] != null && nSerie[i] != null && data[i] != null && fabricante[i] != null)
+                                    {
+                                        Console.WriteLine($"Id do equipamento {idEquipamentos[i]}");
+                                        Console.WriteLine("Nome: " + nome[i]);
+                                        Console.WriteLine("Preço: " + precoAquisicao[i]);
+                                        Console.WriteLine("Número de série: " + nSerie[i]);
+                                        Console.WriteLine("Data de fabricação: " + data[i]);
+                                        Console.WriteLine("Fabricante: " + fabricante[i]);
+                                        Console.WriteLine(" ");
+
+                                    }
+                                }
+
+                                Console.WriteLine("Digite o id do equipamento que deseja realizar o chamado: ");
+                                int idDigitadoChamado = Convert.ToInt32(Console.ReadLine());
+                                Console.Clear();
+                                //////
+                                for (int i = 0; i < contEquipamentos; i++)
+                                {
+                                    if (nome[i] != null && precoAquisicao[i] != null && nSerie[i] != null && data[i] != null && fabricante[i] != null)
+                                    {
+                                       if(idDigitadoChamado == idEquipamentos[i])
+                                        {
+                                            nomeEquiChamado[contChamados] = nome[i];
+                                        }
+
+                                    }
+                                }
+                                Console.WriteLine("Titulo do chamado: ");
+                                tituloChamado[contChamados] = Console.ReadLine();
+                                Console.WriteLine("Descrição do chamado: ");
+                                descricaoChamado[contChamados] = Console.ReadLine();
+                                Console.WriteLine("Data de abertura do chamado: ");
+                                dataChamado[contChamados] = Console.ReadLine();
+                                idChamados[contChamados] = idChamado;
+                                contChamados++;
+                                idChamado++;
+                                Console.Clear();
+                              break;
+
+                            case "2":
+                                int diasChamado;
+                                for (int i = 0; i <= contChamados; i++)
+                                {
+                                    if (tituloChamado[i] != null && descricaoChamado[i] != null && dataChamado[i] != null)
+                                    {
+                                        diasChamado = verificaDataChamado(dataChamado[i]);
+                                        Console.WriteLine($"Id do chamado {idChamados[i]}");
+                                        Console.WriteLine("Titulo do chamado: " + tituloChamado[i]);
+                                        Console.WriteLine("Equipamento: " + nomeEquiChamado[i]);
+                                        Console.WriteLine("Data de abertura chamado: " + dataChamado[i]);
+                                        Console.WriteLine("Dias que o equioamento está no chamado: " + diasChamado);
+                                        Console.WriteLine(" ");
+
+                                    }
+                                }
+
+                                Console.ReadLine();
+                                Console.Clear();
+                            break;
+
+                            case "3":
+                                for (int i = 0; i <= contChamados; i++)
+                                {
+                                    if (tituloChamado[i] != null && descricaoChamado[i] != null && dataChamado[i] != null)
+                                    {
+                                        
+                                        Console.WriteLine($"Id do chamado {idChamados[i]}");
+                                        Console.WriteLine("Titulo do chamado: " + tituloChamado[i]);
+                                        Console.WriteLine("Nome do equipamento no chamado: " + nomeEquiChamado[i]);
+                                        Console.WriteLine("Descrição do chamado: " + descricaoChamado[i]);
+                                        Console.WriteLine("Data do chamado: " + dataChamado[i]);
+                                       
+                                        Console.WriteLine(" ");
+                                       
+                                    }
+                                }
+
+                                Console.WriteLine("Digite o id do chamado que deseja editar: ");
+                                int idEditar = Convert.ToInt32(Console.ReadLine());
+                                Console.Clear();
+
+                                Console.WriteLine("EDITAR CHAMADO: ");
+                                Console.WriteLine("Titulo do chamado: ");
+                                string tituloChamadoEditado = Console.ReadLine();
+                                Console.WriteLine("Descrição do chamado: ");
+                                string descricaoChamadoEditado = Console.ReadLine();
+                                Console.WriteLine("Data de abertura do chamado: ");
+                                string dataChamadoEditado = Console.ReadLine();
+                                Console.Clear();
+
+                                for (int i = 0; i < contEquipamentos; i++)
+                                {
+                                    if (tituloChamado[i] != null && descricaoChamado[i] != null && dataChamado[i] != null)
+                                    {
+                                        if (idChamados[i] == idEditar)
+                                        {
+                                            tituloChamado.SetValue(tituloChamadoEditado, i);
+                                            descricaoChamado.SetValue(descricaoChamadoEditado, i);
+                                            dataChamado.SetValue(dataChamadoEditado, i);
+                                        }
+                                    }
+                                }
+                                Console.ReadLine();
+                                Console.Clear();
+                                break;
+
+                            case "4":
+                                for (int i = 0; i <= contChamados; i++)
+                                {
+                                    if (tituloChamado[i] != null && descricaoChamado[i] != null && dataChamado[i] != null)
+                                    {
+                                        Console.WriteLine($"Id do chamado {idChamados[i]}");
+                                        Console.WriteLine("Titulo do chamado: " + tituloChamado[i]);
+                                        Console.WriteLine("Nome do equipamento no chamado: " + nomeEquiChamado[i]);
+                                        Console.WriteLine("Descrição do chamado: " + descricaoChamado[i]);
+                                        Console.WriteLine("Data do chamado: " + descricaoChamado[i]);
+                                        Console.WriteLine(" ");
+                                    }
+                                }
+
+                                Console.WriteLine("Digite o id o chamado que deseja excluir: ");
+                                int idExcluir = Convert.ToInt32(Console.ReadLine());
+                                Console.Clear();
+
+                                for (int i = 0; i < contChamados; i++)
+                                {
+                                    if (tituloChamado[i] != null && descricaoChamado[i] != null && dataChamado[i] != null)
+                                    {
+                                        if(idChamados[i] == idExcluir)
+                                        {
+
+                                            tituloChamado = tituloChamado.Where(val => val != tituloChamado[i]).ToArray();
+                                            descricaoChamado = descricaoChamado.Where(val => val != descricaoChamado[i]).ToArray();
+                                            dataChamado = dataChamado.Where(val => val != dataChamado[i]).ToArray();
+                                            idChamados = idChamados.Where(val => val != idChamados[i]).ToArray();
+                                            contChamados--;
+
+                                        }
+                                    }
+                                }
+
+                                Console.ReadLine();
+                                Console.Clear();
+                                break;
+
+                        }
+                        break;
+                    default: break;
+                    }
             }
+        }
+
+        public static int verificaDataChamado(string dataAbertura)
+        {
+          
+
+
+            DateTime data = Convert.ToDateTime(dataAbertura);
+            DateTime dataAtual = DateTime.Now;
+
+            TimeSpan diferenca = dataAtual.Subtract(data);
+
+            int totalDias = Convert.ToInt32(diferenca.TotalDays);
+
+            return totalDias - 1;
+
         }
     }
 }
