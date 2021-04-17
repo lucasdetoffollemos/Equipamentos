@@ -10,41 +10,35 @@ namespace EquipamentosApp
     {
         static void Main(string[] args)
         {
-
-
+            //arrays equipamento
             string[] nome = new string[99];
             string[] precoAquisicao = new string[99];
             string[] nSerie = new string[99];
             string[] data = new string[99];
             string[] fabricante = new string[99];
             int[] idEquipamentos = new int[99];
-            ///
+            
+            //arrays chamado
             string[] tituloChamado = new string[99];
             string[] descricaoChamado = new string[99];
             string[] nomeEquiChamado = new string[99];
             string[] dataChamado = new string[99];
             int[] idChamados = new int[99];
 
+            //variaveis equipamentos
             int contEquipamentos = 0;
             int idEquipamento = 1;
+
             
-
-
-            //
+            //Variaveis chamado
             int idChamado = 1;
             int contChamados = 0;
 
             while (true)
             {
-                Console.WriteLine("MENU PRINCIPAL");
-                Console.WriteLine("------escolha uma opção------");
-                Console.WriteLine("1 - Acessar menu equipamentos;");
-                Console.WriteLine("2 - Acessar menu manutenção;");
-                Console.WriteLine("s - para sair do menu;");
+                MenuPrincipal();
 
-                Console.WriteLine("------Digite a opção escolhida------");
                 string opcaoMenuPrincipal = Console.ReadLine();
-
                 Console.Clear();
 
                 if (opcaoMenuPrincipal.Equals("s", StringComparison.OrdinalIgnoreCase))
@@ -54,20 +48,8 @@ namespace EquipamentosApp
 
                 switch (opcaoMenuPrincipal)
                 {
-
                     case "1":
-
-                        //Menu equipamentos
-                        Console.WriteLine("MENU EQUIPAMENTOS: ");
-                        Console.WriteLine("------escolha uma opção------");
-
-                        Console.WriteLine("1 - registrar equipamento;");
-                        Console.WriteLine("2 - visualizar todos os equipamentos registrados no inventário;");
-                        Console.WriteLine("3 - editar um equipamento;");
-                        Console.WriteLine("4 - excluir um equipamento;");
-
-
-                        Console.WriteLine("Digite a opção escolhida: ");
+                        MenuEquipamentos();
                         string opcaoMenuEquipamentos = Console.ReadLine();
 
                         Console.Clear();
@@ -76,52 +58,35 @@ namespace EquipamentosApp
                         {
                             case "1":
 
-                                bool nomeInvalido = false;
-                                string nomeDigitado;
-
-                                Console.WriteLine("Insira o nome do equipamento: ");
-                                nomeDigitado = Console.ReadLine();
-
-                                while (nomeDigitado.Length < 6)
-                                {
-                                    Console.WriteLine("Nome inválido, digite novamente, no minimo 6 caracteres.");
-                                    Console.WriteLine("Insira o nome do equipamento: ");
-                                    nomeDigitado = Console.ReadLine();
-                                } 
-
-
-
+                                string nomeDigitado = VerificaNomeValido();
                                 nome[contEquipamentos] = nomeDigitado;
 
                                 Console.WriteLine("Insira o preço de aquisição: ");
                                 precoAquisicao[contEquipamentos] = Console.ReadLine();
                                 Console.WriteLine("Insira o número de série: ");
                                 nSerie[contEquipamentos] = Console.ReadLine();
-                                //data
                                 Console.WriteLine("Insira a data: ");
                                 data[contEquipamentos] = Console.ReadLine();
                                 Console.WriteLine("Insira o fabricante: ");
                                 fabricante[contEquipamentos] = Console.ReadLine();
-                                idEquipamentos[contEquipamentos] = idEquipamento;
+                                idEquipamentos[contEquipamentos] = idEquipamento; 
                                 contEquipamentos++;
                                 idEquipamento++;
                                 break;
 
                             case "2":
-                                   
                                     for (int i = 0; i <= contEquipamentos; i++)
                                     {
                                         if (nome[i] != null && precoAquisicao[i] != null && nSerie[i] != null && data[i] != null && fabricante[i] != null)
                                         {
-                                        Console.WriteLine($"Id do equipamento {idEquipamentos[i]}");
-                                        Console.WriteLine("Nome: " + nome[i]);
-                                        Console.WriteLine("Preço: " + precoAquisicao[i]);
-                                        Console.WriteLine("Número de série: " + nSerie[i]);
-                                        Console.WriteLine("Data de fabricação: " + data[i]);
-                                        Console.WriteLine("Fabricante: " + fabricante[i]);
-                                        Console.WriteLine(" ");
-
-                                    }
+                                            Console.WriteLine($"Id do equipamento {idEquipamentos[i]}");
+                                            Console.WriteLine("Nome: " + nome[i]);
+                                            Console.WriteLine("Preço: " + precoAquisicao[i]);
+                                            Console.WriteLine("Número de série: " + nSerie[i]);
+                                            Console.WriteLine("Data de fabricação: " + data[i]);
+                                            Console.WriteLine("Fabricante: " + fabricante[i]);
+                                            Console.WriteLine(" ");
+                                        }
                                     }
                                 
                                 Console.ReadLine();
@@ -301,7 +266,7 @@ namespace EquipamentosApp
                                 {
                                     if (tituloChamado[i] != null && descricaoChamado[i] != null && dataChamado[i] != null)
                                     {
-                                        diasChamado = verificaDataChamado(dataChamado[i]);
+                                        diasChamado = VerificaDataChamado(dataChamado[i]);
                                         Console.WriteLine($"Id do chamado {idChamados[i]}");
                                         Console.WriteLine("Titulo do chamado: " + tituloChamado[i]);
                                         Console.WriteLine("Equipamento: " + nomeEquiChamado[i]);
@@ -408,7 +373,7 @@ namespace EquipamentosApp
             }
         }
 
-        public static int verificaDataChamado(string dataAbertura)
+        public static int VerificaDataChamado(string dataAbertura)
         {
           
 
@@ -423,5 +388,49 @@ namespace EquipamentosApp
             return totalDias - 1;
 
         }
+
+        public static void MenuPrincipal()
+        {
+            Console.WriteLine("MENU PRINCIPAL");
+            Console.WriteLine("------escolha uma opção------");
+            Console.WriteLine("1 - Acessar menu equipamentos;");
+            Console.WriteLine("2 - Acessar menu manutenção;");
+            Console.WriteLine("s - para sair do menu;");
+
+            Console.WriteLine("------Digite a opção escolhida------");
+        }
+
+        public static void MenuEquipamentos()
+        {
+            Console.WriteLine("MENU EQUIPAMENTOS: ");
+            Console.WriteLine("------escolha uma opção------");
+
+            Console.WriteLine("1 - registrar equipamento;");
+            Console.WriteLine("2 - visualizar todos os equipamentos registrados no inventário;");
+            Console.WriteLine("3 - editar um equipamento;");
+            Console.WriteLine("4 - excluir um equipamento;");
+
+
+            Console.WriteLine("Digite a opção escolhida: ");
+        }
+
+        public static string VerificaNomeValido()
+        {
+            string nomeDigitado;
+
+            Console.WriteLine("Insira o nome do equipamento: ");
+            nomeDigitado = Console.ReadLine();
+
+            while (nomeDigitado.Length < 6)
+            {
+                Console.WriteLine("Nome inválido, digite novamente, no minimo 6 caracteres.");
+                Console.WriteLine("Insira o nome do equipamento: ");
+                nomeDigitado = Console.ReadLine();
+            }
+
+            return nomeDigitado;
+        }
     }
+
+    
 }

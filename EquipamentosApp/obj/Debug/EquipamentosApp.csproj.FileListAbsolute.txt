@@ -5,3 +5,10 @@ C:\Users\Lucas\source\repos\Equipamentos\EquipamentosApp\obj\Debug\EquipamentosA
 C:\Users\Lucas\source\repos\Equipamentos\EquipamentosApp\obj\Debug\EquipamentosApp.csproj.CoreCompileInputs.cache
 C:\Users\Lucas\source\repos\Equipamentos\EquipamentosApp\obj\Debug\EquipamentosApp.exe
 C:\Users\Lucas\source\repos\Equipamentos\EquipamentosApp\obj\Debug\EquipamentosApp.pdb
+C:\Users\Lucas\Documents\AcademiaDoProgramador\Equipamentos\EquipamentosApp\bin\Debug\EquipamentosApp.exe.config
+C:\Users\Lucas\Documents\AcademiaDoProgramador\Equipamentos\EquipamentosApp\bin\Debug\EquipamentosApp.exe
+C:\Users\Lucas\Documents\AcademiaDoProgramador\Equipamentos\EquipamentosApp\bin\Debug\EquipamentosApp.pdb
+C:\Users\Lucas\Documents\AcademiaDoProgramador\Equipamentos\EquipamentosApp\obj\Debug\EquipamentosApp.csprojAssemblyReference.cache
+C:\Users\Lucas\Documents\AcademiaDoProgramador\Equipamentos\EquipamentosApp\obj\Debug\EquipamentosApp.csproj.CoreCompileInputs.cache
+C:\Users\Lucas\Documents\AcademiaDoProgramador\Equipamentos\EquipamentosApp\obj\Debug\EquipamentosApp.exe
+C:\Users\Lucas\Documents\AcademiaDoProgramador\Equipamentos\EquipamentosApp\obj\Debug\EquipamentosApp.pdb
